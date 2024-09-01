@@ -1,0 +1,22 @@
+<h2>Docker Containers</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let container of containers">
+      <td>{{ container.name }}</td>
+      <td>{{ container.status }}</td>
+      <td>
+        <button (click)="startContainer(container.id)">Start</button>
+        <button (click)="stopContainer(container.id)">Stop</button>
+        <button (click)="removeContainer(container.id)">Remove</button>
+        <button (click)="viewLogs(container.id)">View Logs</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

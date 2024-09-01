@@ -1,0 +1,44 @@
+<!-- src/app/features/data-table/data-table.component.html -->
+<div class="search-container">
+  <input type="text" placeholder="Buscar por nombre..." [(ngModel)]="searchText" />
+</div>
+
+<div class="pagination-container">
+  <label for="itemsPerPage">Registros por página:</label>
+  <select id="itemsPerPage" (change)="onItemsPerPageChange($event)">
+    <option value="10">10</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+  </select>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Apellido</th>
+      <th>Nombre</th>
+      <th>Tipo de Documento</th>
+      <th>Número de Documento</th>
+      <th>Correo</th>
+      <th>Teléfono</th>
+      <th>País</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of paginatedData | filter: searchText">
+      <td>{{ record.apellido }}</td>
+      <td>{{ record.nombre }}</td>
+      <td>{{ record.tipo_documento }}</td>
+      <td>{{ record.numero_documento }}</td>
+      <td>{{ record.correo }}</td>
+      <td>{{ record.telefono }}</td>
+      <td>{{ record.pais }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="pagination">
+  <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
+  <span>Página {{ currentPage }}</span>
+  <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente</button>
+</div>
